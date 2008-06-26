@@ -1,6 +1,6 @@
 %define name	nagios-check_memory
 %define version	1.7
-%define release	%mkrel 1
+%define release	%mkrel 2
 
 Name:		%{name}
 Version:	%{version}
@@ -12,7 +12,7 @@ URL:		http://www.nagiosexchange.org/cgi-bin/page.cgi?g=Detailed%2F1789.html;d=1
 Source0:	check_mem.pl.gz
 Patch0:     check_memory-1.7-fix-warnings.patch
 Patch1:     check_memory-1.7-dont-use-findbin.patch
-BuildArch:  noarch
+Requires:   nagios-plugins
 BuildRoot:  %{_tmppath}/%{name}-%{version}
 
 %description
