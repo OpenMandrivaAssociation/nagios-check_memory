@@ -1,6 +1,6 @@
 %define name	nagios-check_memory
 %define version	1.7
-%define release	%mkrel 2
+%define release	%mkrel 3
 
 Name:		%{name}
 Version:	%{version}
@@ -13,6 +13,7 @@ Source0:	check_mem.pl.gz
 Patch0:     check_memory-1.7-fix-warnings.patch
 Patch1:     check_memory-1.7-dont-use-findbin.patch
 Requires:   nagios-plugins
+BuildArch:  noarch
 BuildRoot:  %{_tmppath}/%{name}-%{version}
 
 %description
@@ -24,7 +25,7 @@ used and total available by using the linux "free -mt" command.
 gunzip < %{SOURCE0} | gunzip > check_mem.pl
 %patch0 -p 0
 %patch1 -p 0
-perl -pi -e 's|\@libdir@|%{_libdir}|' check_mem.pl
+perl -pi -e 's|\@libdir@|%{_datadir}|' check_mem.pl
 
 %build
 
@@ -32,14 +33,14 @@ perl -pi -e 's|\@libdir@|%{_libdir}|' check_mem.pl
 %install
 rm -rf %{buildroot}
 
-install -d -m 755 %{buildroot}%{_libdir}/nagios/plugins
-install -m 755 check_mem.pl %{buildroot}%{_libdir}/nagios/plugins/check_memory
+install -d -m 755 %{buildroot}%{_datadir}/nagios/plugins
+install -m 755 check_mem.pl %{buildroot}%{_datadir}/nagios/plugins/check_memory
 
 install -d -m 755 %{buildroot}%{_sysconfdir}/nagios/plugins.d
 cat > %{buildroot}%{_sysconfdir}/nagios/plugins.d/check_memory.cfg <<'EOF'
 define command{
 	command_name	check_memory
-	command_line	%{_libdir}/nagios/plugins/check_memory
+	command_line	%{_datadir}/nagios/plugins/check_memory
 }
 EOF
 
@@ -48,6 +49,5 @@ rm -rf %{buildroot}
 
 %files
 %defattr(-,root,root)
-%{_libdir}/nagios/plugins/check_memory
+%{_datadir}/nagios/plugins/check_memory
 %config(noreplace) %{_sysconfdir}/nagios/plugins.d/check_memory.cfg
-
