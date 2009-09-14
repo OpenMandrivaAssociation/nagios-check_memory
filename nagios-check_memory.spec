@@ -1,6 +1,6 @@
 %define name	nagios-check_memory
 %define version	1.7
-%define release	%mkrel 3
+%define release	%mkrel 4
 
 Name:		%{name}
 Version:	%{version}
