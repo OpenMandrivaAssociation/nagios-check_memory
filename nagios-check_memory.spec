@@ -1,6 +1,6 @@
 %define name    nagios-check_memory
 %define version 1.0
-%define release %mkrel 1
+%define release %mkrel 2
 
 Name:       %{name}
 Version:    %{version}
@@ -28,13 +28,13 @@ used and total available by using the linux "free -mt" command.
 rm -rf %{buildroot}
 
 install -d -m 755 %{buildroot}%{_datadir}/nagios/plugins
-install -m 755 %{SOURCE0} %{buildroot}%{_datadir}/nagios/plugins/check_memory.pl
+install -m 755 %{SOURCE0} %{buildroot}%{_datadir}/nagios/plugins/check_memory
 
 install -d -m 755 %{buildroot}%{_sysconfdir}/nagios/plugins.d
 cat > %{buildroot}%{_sysconfdir}/nagios/plugins.d/check_memory.cfg <<'EOF'
 define command{
     command_name    check_memory
-    command_line    %{_datadir}/nagios/plugins/check_memory.pl
+    command_line    %{_datadir}/nagios/plugins/check_memory
 }
 EOF
 
@@ -43,5 +43,5 @@ rm -rf %{buildroot}
 
 %files
 %defattr(-,root,root)
-%{_datadir}/nagios/plugins/check_memory.pl
+%{_datadir}/nagios/plugins/check_memory
 %config(noreplace) %{_sysconfdir}/nagios/plugins.d/check_memory.cfg
