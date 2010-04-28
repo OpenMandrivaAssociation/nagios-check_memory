@@ -5,7 +5,7 @@
 Name:       %{name}
 Version:    %{version}
 Release:    %{release}
-Epoch:      0
+Epoch:      1
 Summary:    Check memory
 Group:      Networking/Other
 License:    BSD
