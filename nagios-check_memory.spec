@@ -9,7 +9,7 @@ Epoch:      1
 Summary:    Check memory
 Group:      Networking/Other
 License:    BSD
-URL:        http://www.monitoringexchange.org/inventory/Check-Plugins/Operating-Systems/Linux/check_memory
+URL:        https://www.monitoringexchange.org/inventory/Check-Plugins/Operating-Systems/Linux/check_memory
 Source0:    check_memory.pl
 BuildArch:  noarch
 BuildRoot:  %{_tmppath}/%{name}-%{version}
